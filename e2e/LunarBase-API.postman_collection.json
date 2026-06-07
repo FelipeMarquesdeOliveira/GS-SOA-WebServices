@@ -1,0 +1,204 @@
+{
+  "info": {
+    "name": "LunarBase API",
+    "description": "Collection for testing LunarBase microservices",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ResourceService",
+      "item": [
+        {
+          "name": "Create Resource",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5001/resources",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Oxygen Tank Alpha\",\"type\":\"OXYGEN\",\"maxCapacity\":1000,\"location\":\"Module A\"}"
+            }
+          }
+        },
+        {
+          "name": "Get All Resources",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5001/resources"
+          }
+        },
+        {
+          "name": "Get Resource by ID",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5001/resources/1"
+          }
+        },
+        {
+          "name": "Update Resource Amount",
+          "request": {
+            "method": "PUT",
+            "url": "http://localhost:5001/resources/1",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "500"}
+          }
+        },
+        {
+          "name": "Consume Resource",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5001/resources/1/consume",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "100"}
+          }
+        },
+        {
+          "name": "Replenish Resource",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5001/resources/1/replenish",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "50"}
+          }
+        },
+        {
+          "name": "Get Statistics",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5001/resources/stats"
+          }
+        },
+        {
+          "name": "Get Resource History",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5001/resources/1/history"
+          }
+        }
+      ]
+    },
+    {
+      "name": "EventService",
+      "item": [
+        {
+          "name": "Create Event",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5003/events",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"title\":\"Radiation Level High\",\"description\":\"Radiation exceeded threshold\",\"severity\":\"CRITICAL\"}"}
+          }
+        },
+        {
+          "name": "Get All Events",
+          "request": {"method": "GET", "url": "http://localhost:5003/events"}
+        },
+        {
+          "name": "Get Active Events",
+          "request": {"method": "GET", "url": "http://localhost:5003/events/active"}
+        },
+        {
+          "name": "Acknowledge Event",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5003/events/1/ack",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"acknowledgedBy\":\"Commander Silva\"}"}
+          }
+        }
+      ]
+    },
+    {
+      "name": "CrewService",
+      "item": [
+        {
+          "name": "Create Crew Member",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5006/crew",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"name\":\"Ana Silva\",\"role\":\"COMMANDER\",\"specialization\":\"Mission Leadership\"}"}
+          }
+        },
+        {
+          "name": "Get All Crew",
+          "request": {"method": "GET", "url": "http://localhost:5006/crew"}
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5006/crew/task",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"crewMemberId\":1,\"title\":\"Repair Solar Panel\",\"description\":\"Replace damaged panel\"}"}
+          }
+        },
+        {
+          "name": "Get Crew Tasks",
+          "request": {"method": "GET", "url": "http://localhost:5006/crew/1/tasks"}
+        },
+        {
+          "name": "Assign Shift",
+          "request": {"method": "POST", "url": "http://localhost:5006/crew/1/shift"}
+        }
+      ]
+    },
+    {
+      "name": "SimulationService",
+      "item": [
+        {
+          "name": "Create Simulation",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5002/simulation",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"name\":\"Oxygen Depletion\",\"scenario\":\"Simulate oxygen levels during EVA\"}"}
+          }
+        },
+        {
+          "name": "Run Simulation",
+          "request": {"method": "POST", "url": "http://localhost:5002/simulation/1/run"}
+        },
+        {
+          "name": "Get Simulation History",
+          "request": {"method": "GET", "url": "http://localhost:5002/simulation/history"}
+        }
+      ]
+    },
+    {
+      "name": "TelemetryService",
+      "item": [
+        {
+          "name": "Add Telemetry Reading",
+          "request": {
+            "method": "POST",
+            "url": "http://localhost:5004/telemetry",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\"sensorType\":\"Temperature\",\"value\":22.5,\"unit\":\"C\",\"location\":\"Module A\"}"}
+          }
+        },
+        {
+          "name": "Get Current State",
+          "request": {"method": "GET", "url": "http://localhost:5004/telemetry/current"}
+        }
+      ]
+    },
+    {
+      "name": "SpaceIntegrationService",
+      "item": [
+        {
+          "name": "Get Space Weather",
+          "request": {"method": "GET", "url": "http://localhost:5005/space/weather"}
+        },
+        {
+          "name": "Get Asteroids",
+          "request": {"method": "GET", "url": "http://localhost:5005/space/asteroids"}
+        },
+        {
+          "name": "Get Mars Weather",
+          "request": {"method": "GET", "url": "http://localhost:5005/space/mars/weather"}
+        }
+      ]
+    }
+  ]
+}
