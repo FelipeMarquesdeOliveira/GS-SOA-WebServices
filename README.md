@@ -122,9 +122,17 @@ cd tests/lunarbase-tests
 mvn test
 ```
 
+### Testes E2E com Playwright
+
+```bash
+cd e2e
+npm install
+npx playwright test
+```
+
 ### Testes com Postman
 
-Coloquei na pasta `e2e/` uma colecao do Postman com todos os endpoints para teste.
+Colecao do Postman disponivel em `e2e/LunarBase-API.postman_collection.json`.
 
 ## Integracao com Mobile
 
